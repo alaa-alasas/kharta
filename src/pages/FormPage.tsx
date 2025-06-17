@@ -8,6 +8,9 @@ import InputFiledCustom from "../components/InputFiledCustom/InputFiledCustom";
 // import AppToast from "../components/ToastCustom/ToastCustom";
 import { provinceOptions } from "../data/province";
 import { studyOptions } from "../data/study";
+import { countryOptions } from "../data/country";
+import { workOptions } from "../data/work";
+import { HobbiesOptions } from "../data/Hobbies";
 
 const  FormPage = () => {
   // const [errors, setErrors] = useState<AuthError>();
@@ -33,18 +36,7 @@ const  FormPage = () => {
     { value: "female", label: "أنثى" },
   ];
 
-  
 
-  const countryOptions = [
-    { value: "", label: "اختر المنطقة" },
-    { value: "المرحلة الابتدائية", label: "المرحلة الابتدائية" },
-    { value: "المرحلة الإعدادية", label: "المرحلة الإعدادية" },
-    { value: "المرحلة الثانوية", label: "المرحلة الثانوية" },
-    { value: "دبلوم / معهد تقني", label: "دبلوم / معهد تقني" },
-    { value: "جامعي", label: "جامعي" },
-    { value: "ماجستير", label: "ماجستير" },
-    { value: "دكتوراه", label: "دكتوراه" },
-  ];
 
   const LoginInputData = [
     {
@@ -202,7 +194,7 @@ const  FormPage = () => {
               className="custom-input lh-1 ls-normal p-14 fs-12"
               aria-label="اختر المهنة"
             >
-              {countryOptions.map((option, index) => (
+              {workOptions.map((option, index) => (
                 <option key={index} value={option.value}>
                   {option.label}
                 </option>
@@ -222,7 +214,7 @@ const  FormPage = () => {
               className="custom-input lh-1 ls-normal p-14 fs-12"
               aria-label="اختر الهواية"
             >
-              {countryOptions.map((option, index) => (
+              {HobbiesOptions.map((option, index) => (
                 <option key={index} value={option.value}>
                   {option.label}
                 </option>
