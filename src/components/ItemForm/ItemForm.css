@@ -1,0 +1,66 @@
+.formWrapper {
+    padding: 24px 109px 0 64px !important;
+}
+
+.formTitle {
+    font-size: 60px;
+    margin: 76px 0;
+    color: var(--black-color);
+}
+
+.formFields {
+    gap: 64px;
+}
+
+.imageBox {
+    height: 210px;
+}
+
+.formWrapper .upload-box{
+    width: 100% !important;
+}
+.label-image{
+    font-size: 32px !important;
+}
+.formWrapper .uploadIcon {
+    width: 10vw;
+    height: 108px;
+}
+
+.submitBtn {
+    font-size: 32px !important;
+    width: 199px;
+    height: 61px;
+    margin-top: 120px;
+}
+
+@media (max-width: 992px) {
+    .formWrapper {
+        padding: 12px 20px 0 20px !important;
+    }
+    
+    .formTitle {
+        font-size: 30px;
+        margin: 30px 0;
+    }
+    
+    .formFields {
+        gap: 32px;
+    }
+
+    .formWrapper .custom-input-group label,
+    .formWrapper .label-image{
+        font-size: 16px !important;
+    }
+
+    .submitBtn {
+        margin-top: 60px;
+        font-size: 16px !important;
+        width: 125px;
+    }
+
+    .imageBox {
+        height: 160px;
+    }
+    
+}

@@ -1,0 +1,5 @@
+.btn-custom:hover{
+  color: var(--green00) !important;
+  background-color: white !important;
+  border: 0.5px solid var(--green00) !important;
+}

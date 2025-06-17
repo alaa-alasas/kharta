@@ -1,0 +1,30 @@
+.modal-backdrop.show {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1 !important;
+}
+
+.modal-content {
+    padding: 80px 0 !important;
+}
+
+.modal-content .modal-custom-btn {
+    width: 200px;
+}
+
+@media (max-width: 992px) {
+    .modal-content {
+        padding: 40px 0 !important;
+    }
+    
+    .modal-content .modal-body p
+        {
+       font-size: 18px !important;
+    }
+
+    .modal-content .modal-custom-btn {
+        width: 100px;
+        font-size: 20px !important;
+    }
+
+}

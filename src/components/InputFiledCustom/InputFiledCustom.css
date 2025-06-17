@@ -1,0 +1,26 @@
+/*place-holder change color*/
+.custom-input-group input::placeholder,
+.custom-input-group input::-moz-placeholder,/*Firefox*/
+.custom-input-group input:-ms-input-placeholder,/*Internet Explorer*/
+.custom-input-group input::-ms-input-placeholder  /*Edge*/{
+  color: var(--grey13)
+}
+
+/*shadow on focus change color*/
+.custom-input:focus {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+              0 0 0 0.2rem var(--green01) !important;
+  border-color: var(--green01) !important;
+}
+
+/*custom style on auto-fills input fields change color*/
+.custom-input:-webkit-autofill,
+.custom-input:-webkit-autofill:hover,
+.custom-input:-webkit-autofill:focus,
+.custom-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 100px #fff inset !important;
+  -webkit-text-fill-color: var(--grey12) !important;
+  caret-color: var(--grey12) !important;
+  background-color: #fff !important;
+}
+
