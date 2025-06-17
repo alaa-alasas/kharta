@@ -1,4 +1,4 @@
-import { useRef, type FormEvent, useState } from "react";
+import { useRef, type FormEvent } from "react";
 import { Row, Col, Form, Image } from "react-bootstrap";
 import FormTitle from "../components/FormTitle/FormTitle";
 import type { TitleData } from "../types/Title";
