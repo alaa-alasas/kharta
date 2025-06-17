@@ -1,12 +1,11 @@
-import axios from "axios";
 import { useRef, type FormEvent, useState } from "react";
 import { Row, Col, Form, Image } from "react-bootstrap";
 import FormTitle from "../components/FormTitle/FormTitle";
 import type { TitleData } from "../types/Title";
 import BtnCustom from "../components/BtnCustom/BtnCustom";
 import InputFiledCustom from "../components/InputFiledCustom/InputFiledCustom";
-import type { ToastData } from "../types/ToastData";
-import AppToast from "../components/ToastCustom/ToastCustom";
+// import type { ToastData } from "../types/ToastData";
+// import AppToast from "../components/ToastCustom/ToastCustom";
 import { provinceOptions } from "../data/province";
 import { studyOptions } from "../data/study";
 
@@ -18,11 +17,11 @@ const  FormPage = () => {
 
   // const navigate = useNavigate();
 
-  const [toast, setToast] = useState<ToastData>({
-    show: false,
-    type: 'success',
-    message: '',
-  });
+  // const [toast, setToast] = useState<ToastData>({
+  //   show: false,
+  //   type: 'success',
+  //   message: '',
+  // });
 
   const LoginTitle: TitleData = {
     title: "خارطة عشرة عمر",
@@ -245,7 +244,7 @@ const  FormPage = () => {
         </Col>
       </Row>
 
-      {toast.type && <AppToast data={toast} />}
+      {/* {toast.type && <AppToast data={toast} />} */}
     </Form>
   );
 };
