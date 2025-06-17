@@ -1,9 +1,7 @@
 import { Col, Form, Row } from "react-bootstrap";
 import ImageUploadBox from "../ImageUploadBox/ImageUploadBox";
 import "./ItemForm.css";
-import BackBtn from "../BackBtn/BackBtn";
 import InputFiledCustom from "../../components/InputFiledCustom/InputFiledCustom";
-import type { ItemError } from "../../types/ItemError";
 import BtnCustom from "../BtnCustom/BtnCustom";
 
 type AddEditType = {
@@ -17,7 +15,6 @@ type AddEditType = {
 };
 
 type AddEditProps = {
-    error?: ItemError
     addItemData: AddEditType[];
     onSubmit: (e: React.FormEvent) => void;
     image: React.RefObject<HTMLInputElement>;
@@ -26,11 +23,10 @@ type AddEditProps = {
 
 };
 
-const ItemForm = ({ error ,addItemData, onSubmit, image, title, initialImage }: AddEditProps) => {
+const ItemForm = ({  addItemData, onSubmit, image, title, initialImage }: AddEditProps) => {
 
     return (
         <div className="formWrapper container-lg">
-            <BackBtn to="/home/items" />
             <h2 className="formTitle fw-semibold">{title}</h2>
             <Form onSubmit={onSubmit}>
                 <div className="d-flex gap-5 align-items-start flex-wrap flex-lg-nowrap ">
@@ -47,9 +43,9 @@ const ItemForm = ({ error ,addItemData, onSubmit, image, title, initialImage }: 
                                 classExtraInput="rounded-1"
                                 defaultValue={data.defaultValue}
                             >
-                                {error?.[data.errorKey as keyof ItemError] && (
+                                {/* {error?.[data.errorKey as keyof ItemError] && (
                                     <p className="text-danger mb-0 fs-14">{error?.[data.errorKey as keyof ItemError]?.[0]}</p>
-                                )}
+                                )} */}
                           </InputFiledCustom>
                         ))}
                     </div>
@@ -61,7 +57,7 @@ const ItemForm = ({ error ,addItemData, onSubmit, image, title, initialImage }: 
                             addNewItem="imageBox rounded-1"
                             initialImage={initialImage} 
                         />
-                        {error?.image && <p className="text-danger mb-0 fs-14">{error.image[0]}</p>}
+                        {/* {error?.image && <p className="text-danger mb-0 fs-14">{error.image[0]}</p>} */}
                     </div>
                 </div>
 
