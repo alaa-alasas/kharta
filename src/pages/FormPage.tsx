@@ -27,8 +27,8 @@ const  FormPage = () => {
   // });
 
   const LoginTitle: TitleData = {
-    title: "خارطة عشرة عمر",
-    desc: "فعالية سحوبات عام 2025",
+    title: "خارطة عشرة ......... عمر",
+    desc: "",
   };
    const genderOptions = [
     { value: "", label: "اختر الجنس" },
