@@ -1,0 +1,40 @@
+.itemShowWapper {
+    padding: 0px 64px 48px 64px !important;
+}
+  
+  .itemShowTitle {
+    font-size: 60px;
+    margin-bottom: 40px;
+    margin-top: 76px;
+  }
+  
+  .itemShowSpan {
+    font-size: 40px;
+    color: #8080808C;
+  }
+  
+  .itemShowImage {
+      width: 370px;
+      height: 370px;
+  }
+
+  .itemShowPrice{
+      font-size: 60px;
+      margin-top: 40px;
+  }
+
+  @media (max-width: 992px) {
+    .itemShowWapper {
+      padding: 0px 32px 24px 32px !important;
+    }
+    
+  
+      .itemShowTitle,
+      .itemShowPrice {
+        font-size: 45px;
+      }
+
+      .itemShowSpan{
+        font-size: 30px;
+      }
+  }

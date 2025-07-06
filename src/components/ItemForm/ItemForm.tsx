@@ -1,5 +1,4 @@
 import { Col, Form, Row } from "react-bootstrap";
-import ImageUploadBox from "../ImageUploadBox/ImageUploadBox";
 import "./ItemForm.css";
 import InputFiledCustom from "../../components/InputFiledCustom/InputFiledCustom";
 import BtnCustom from "../BtnCustom/BtnCustom";
@@ -9,61 +8,71 @@ type AddEditType = {
     placeholder: string;
     type: string;
     controlId: string;
-    ref: React.RefObject<HTMLInputElement>;
+    ref: React.RefObject<HTMLInputElement | HTMLSelectElement>; 
     defaultValue?: string;
     errorKey: string,
+    options?: { label: string; value: string }[]; 
 };
 
 type AddEditProps = {
     addItemData: AddEditType[];
     onSubmit: (e: React.FormEvent) => void;
-    image: React.RefObject<HTMLInputElement>;
     title: string;
-      initialImage?: string; 
-
 };
 
-const ItemForm = ({  addItemData, onSubmit, image, title, initialImage }: AddEditProps) => {
+const ItemForm = ({  addItemData, onSubmit, title }: AddEditProps) => {
 
     return (
         <div className="formWrapper container-lg">
             <h2 className="formTitle fw-semibold">{title}</h2>
             <Form onSubmit={onSubmit}>
-                <div className="d-flex gap-5 align-items-start flex-wrap flex-lg-nowrap ">
-                    <div className="d-flex flex-column formFields flex-fill">
-                        {addItemData.map((data, index) => (
-                            <InputFiledCustom
-                                key={index}
-                                controlId={data.controlId} 
-                                type={data.type}
-                                placeholder={data.placeholder}
-                                ref={data.ref}
-                                label={data.label}
-                                classExtraLabel="pb-3 fs-1 mb-0"
-                                classExtraInput="rounded-1"
-                                defaultValue={data.defaultValue}
-                            >
-                                {/* {error?.[data.errorKey as keyof ItemError] && (
-                                    <p className="text-danger mb-0 fs-14">{error?.[data.errorKey as keyof ItemError]?.[0]}</p>
-                                )} */}
-                          </InputFiledCustom>
-                        ))}
-                    </div>
+                <Row className="gx-4 gy-3">
+                    {addItemData.map((data, index) => {
+                        if (data.type === "select") {
+                             return (
+                                <Col key={index} xs={12} md={6}>
+                                    <Form.Group controlId={data.controlId}>
+                                        <Form.Label className="pb-3 fs-6 mb-0">{data.label}</Form.Label>
+                                        <Form.Select
+                                            ref={data.ref as React.RefObject<HTMLSelectElement>}
+                                            defaultValue={data.defaultValue}
+                                            className="rounded-1"
+                                            aria-label={data.label}
+                                        >
+                                            {/* <option value="">{data.placeholder || "اختر خيارا"}</option> */}
+                                            {data.options?.map((opt, i) => (
+                                                <option key={i} value={opt.value}>
+                                                    {opt.label}
+                                                </option>
+                                            ))}
+                                        </Form.Select>
+                                    </Form.Group>
+                                </Col>
+                            );
+                        }
 
-                    <div className="flex-fill">
-                        <Form.Label className="label-image pb-3 fw-medium text-grey lh-1 ls-normal fs-1 mb-0">Image</Form.Label>
-                        <ImageUploadBox
-                            ref={image}
-                            addNewItem="imageBox rounded-1"
-                            initialImage={initialImage} 
-                        />
-                        {/* {error?.image && <p className="text-danger mb-0 fs-14">{error.image[0]}</p>} */}
-                    </div>
-                </div>
+                        // Default case: render normal input field
+                        return (
+                            <Col key={index} xs={12} md={6}>
+                                <InputFiledCustom
+                                    controlId={data.controlId}
+                                    type={data.type}
+                                    placeholder={data.placeholder}
+                                    ref={data.ref as React.RefObject<HTMLInputElement>}
+                                    label={data.label}
+                                    classExtraLabel="pb-3 fs-6 mb-0"
+                                    classExtraInput="rounded-1"
+                                    defaultValue={data.defaultValue}
+                                >
+                                </InputFiledCustom>
+                            </Col>
+                        );
+                    })}
+                </Row>
 
                 <Row>
                     <Col className="d-flex justify-content-center">
-                        <BtnCustom name={"Save"} classExtra="p-3 fs-2 submitBtn mb-4" size="lg" type="submit" />
+                        <BtnCustom name={"حفظ"} classExtra="p-3 fs-5 submitBtn mb-4" type="submit" />
                     </Col>
                 </Row>
             </Form>

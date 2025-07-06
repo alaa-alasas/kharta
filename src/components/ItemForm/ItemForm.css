@@ -3,13 +3,13 @@
 }
 
 .formTitle {
-    font-size: 60px;
-    margin: 76px 0;
+    font-size: 30px;
+    margin: 20px 0;
     color: var(--black-color);
 }
 
 .formFields {
-    gap: 64px;
+    gap: 16px;
 }
 
 .imageBox {
@@ -28,10 +28,9 @@
 }
 
 .submitBtn {
-    font-size: 32px !important;
-    width: 199px;
+    font-size: 16px !important;
     height: 61px;
-    margin-top: 120px;
+    margin-top: 50px;
 }
 
 @media (max-width: 992px) {
@@ -45,18 +44,12 @@
     }
     
     .formFields {
-        gap: 32px;
+        gap: 8px;
     }
 
     .formWrapper .custom-input-group label,
     .formWrapper .label-image{
         font-size: 16px !important;
-    }
-
-    .submitBtn {
-        margin-top: 60px;
-        font-size: 16px !important;
-        width: 125px;
     }
 
     .imageBox {

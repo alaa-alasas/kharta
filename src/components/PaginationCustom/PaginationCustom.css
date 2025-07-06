@@ -1,0 +1,58 @@
+.pagination{
+    gap: 5px;
+}
+
+.pagination .page-item.active .page-link{
+    background-color: var(--orange00);
+}
+
+.pagination .custom-ellipsis .page-link{
+    border-radius: 8px !important;  
+    border: 0; 
+    text-align: center;
+}
+
+.pagination .page-link{
+    border-color: var(--grey151) !important;
+    border-radius: 50% !important;
+    font-size: 13px;
+    line-height: 100%;
+    padding: 22px !important;
+    color: var(--black-color33);
+    height: 60px;
+    width: 60px;
+    text-align: center;
+}
+
+.pagination .page-item:hover .page-link {
+    border-color: var(--orange00) !important;
+    color: var(--orange00) !important;
+}
+
+.pagination .page-item.active:hover .page-link {
+    color: var(--white-color) !important;
+}
+
+/**remove default design by bootstrap**/
+.pagination .page-item .page-link:hover,
+.pagination .page-item .page-link:focus {
+    color: none !important;
+    background-color: none !important;
+    outline: 0;
+    box-shadow: none !important;
+}
+
+@media (max-width: 992px) {
+    .pagination{
+        gap: 0px;
+    }
+
+    .pagination .page-link{
+        font-size: 14px;
+        padding: 10px !important;
+        height: 40px;
+        width: 40px;
+        line-height: 1.5 !important;
+    }
+    
+}

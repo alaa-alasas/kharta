@@ -1,0 +1,72 @@
+.sidebar{
+    background-color: var(--grey);
+    padding: 35px;
+    max-width: 270px
+}
+
+.user-info{
+    padding-bottom: 6.25%;
+}
+
+.nav-links {
+    max-height: calc(100vh - 500px);
+    overflow-y: auto;
+}
+
+.logout-btn {
+    color: var(--black-color00) !important;
+    transition: all 0.5s ease;
+}
+
+.logout-btn:hover{
+    color: var(--orange00) !important;
+}
+
+.logout-btn img{
+    transition: all 0.5s ease;
+}
+
+.logout-btn:hover img{
+    transform: translateX(10px);
+}
+
+.btn-close-sidebar{
+    width: 50px;
+    height: 50px;
+    display: none !important;
+}
+/* =============
+    Hover Effect Links 
+   =============*/
+.sidebar-link::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: var(--orange00);
+    transition: width 0.3s ease;
+}
+
+.sidebar-link:hover::after{
+    width: 100%;
+}
+
+
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(0);
+      transition: transform 0.3s ease-in-out;
+      z-index: 1050;
+    }
+  
+    .sidebar.hide {
+      transform: translateX(-100%);
+    }
+  
+    .btn-close-sidebar {
+      display: block !important;
+      font-size: 1.25rem;
+    }
+  }
