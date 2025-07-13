@@ -9,5 +9,9 @@ export const NavBarData: LinkItem[] = [
     name: "معلومات المستهلكين",
     path: "/admin/customer",
     alt: "favorites Logo"
+  },{
+    name: "الهدايا",
+    path: "/admin/gift",
+    alt: "favorites Logo"
   }
 ];

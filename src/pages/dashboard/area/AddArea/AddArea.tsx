@@ -72,7 +72,7 @@ const AddArea = () => {
                 }, 2000);
                 
             })
-            .catch((err) => {
+            .catch(() => {
                 // setErrors(err.response.data.errors);
                 setToast({
                     show: true,
@@ -88,7 +88,7 @@ const AddArea = () => {
                 title="إضافة منطقة جديدة" 
                 addItemData={addItemData}
                 onSubmit={sendData}
-                image={image}
+                // image={image}
                 // error={errors}
             />
             {toast.type && <AppToast data={toast} />}

@@ -10,7 +10,7 @@ import { studyOptions } from "../../../../data/study";
 import { workOptions } from "../../../../data/work";
 import { HobbiesOptions } from "../../../../data/Hobbies";
 
-const AddCustomer = () => {
+const AddGift = () => {
 
     const [toast, setToast] = useState<ToastData>({
         show: false,
@@ -31,74 +31,29 @@ const AddCustomer = () => {
 
     const addItemData : AddEditType[]= [
         {
-            label: "الاسم الكامل",
-            placeholder: "الاسم الكامل",
+            label: "اسم المستهلك",
+            placeholder: "اسم المستهلك",
             type: "text",
             controlId: "productName",
             ref: name,
             errorKey: "name"
         },
         {
-            label: "تاريخ الميلاد",
-            placeholder: "تاريخ الميلاد",
+            label: "تاريخ التسليم",
+            placeholder: "تاريخ التسليم",
             type: "date",
             controlId: "productPrice",
             ref: price,
             errorKey: "price"
         },
         {
-            label: "المحافظة",
+            label: "الهدية",
             placeholder: "",
             type: "select",
             controlId: "productName",
             ref: select,
             errorKey: "name",
             options: provinceOptions
-        },
-        {
-            label: "المنطقة",
-            placeholder: "",
-            type: "select",
-            controlId: "productName",
-            ref: select,
-            errorKey: "name",
-            options: countryOptions
-        },
-        {
-            label: "الجنس",
-            placeholder: "",
-            type: "select",
-            controlId: "productName",
-            ref: select,
-            errorKey: "name",
-            options: genderOptions
-        },
-        {
-            label: "درجة التعليم",
-            placeholder: "",
-            type: "select",
-            controlId: "productName",
-            ref: select,
-            errorKey: "name",
-            options: studyOptions
-        },
-        {
-            label: "المهنة",
-            placeholder: "",
-            type: "select",
-            controlId: "productName",
-            ref: select,
-            errorKey: "name",
-            options: workOptions
-        },
-        {
-            label: "الهواية",
-            placeholder: "",
-            type: 'select',
-            controlId: "",
-            ref: select,
-            errorKey: "name",
-            options: HobbiesOptions
         }
     ];
 
@@ -119,7 +74,7 @@ const AddCustomer = () => {
     return (
         <>
             <ItemForm
-                title="إضافة مستهلك جديد"
+                title="إضافة هدية جديدة"
                 addItemData={addItemData}
                 onSubmit={sendData}
             />
@@ -129,4 +84,4 @@ const AddCustomer = () => {
     );
 };
 
-export default AddCustomer;
+export default AddGift;

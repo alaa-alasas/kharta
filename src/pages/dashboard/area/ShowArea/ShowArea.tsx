@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import "./ShowArea.css";
 // import type { Item } from "../../../types/Item";
 // import BackBtn from "../../../components/BackBtn/BackBtn";
-import ImageCustom from "../../../../components/ImageCustom/ImageCustom";
+// import ImageCustom from "../../../../components/ImageCustom/ImageCustom";
 // import { formatDate } from "../../../commons/formatDate";
 import Loader from "../../../../components/Loader/Loader";
 import ErrorReload from "../../../../components/ErrorReload/ErrorReload";
@@ -27,7 +27,7 @@ const ShowArea = () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-    .then((res) => {
+    .then(() => {
       setLoading(false);
       // setShowItem(res.data);
     })

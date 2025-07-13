@@ -1,26 +1,26 @@
-import { useRef, useState, type FormEvent } from "react";
+import { useRef, type FormEvent } from "react";
 import { Row, Col, Form, Image, Container } from "react-bootstrap";
 import FormTitle from "../../components/FormTitle/FormTitle";
 import type { TitleData } from "../../types/Title";
 import BtnCustom from "../../components/BtnCustom/BtnCustom";
 import InputFiledCustom from "../../components/InputFiledCustom/InputFiledCustom";
-import type { ToastData } from "../../types/ToastData";
+// import type { ToastData } from "../../types/ToastData";
 import { useNavigate } from "react-router-dom";
-import type { AuthError } from "../../types/AuthError";
+// import type { AuthError } from "../../types/AuthError";
 
 const Login = () => {
-  const [errors, setErrors] = useState<AuthError>();
+  // const [errors, setErrors] = useState<AuthError>();
 
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
 
-  const [toast, setToast] = useState<ToastData>({
-    show: false,
-    type: 'success',
-    message: '',
-  });
+  // const [toast, setToast] = useState<ToastData>({
+  //   show: false,
+  //   type: 'success',
+  //   message: '',
+  // });
 
   const LoginTitle: TitleData = {
     title: "تسجيل الدخول",

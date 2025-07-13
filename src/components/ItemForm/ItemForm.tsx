@@ -3,7 +3,7 @@ import "./ItemForm.css";
 import InputFiledCustom from "../../components/InputFiledCustom/InputFiledCustom";
 import BtnCustom from "../BtnCustom/BtnCustom";
 
-type AddEditType = {
+export type AddEditType = {
     label: string;
     placeholder: string;
     type: string;

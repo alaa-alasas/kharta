@@ -1,15 +1,15 @@
-import { useLocation, useNavigate } from "react-router-dom";
+// import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { FiAlignLeft } from "react-icons/fi";
 import Sidebar from "../../components/SideBar/SideBar";
 
 const Items = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  // const location = useLocation();
+  // const navigate = useNavigate();
 
-  const hideElement =
-    location.pathname === "/home" || location.pathname === "/home/";
+  // const hideElement =
+  //   location.pathname === "/home" || location.pathname === "/home/";
 
   const [showSidebar, setShowSidebar] = useState(true);
   const [isMobile, setIsMobile] = useState(false);

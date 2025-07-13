@@ -13,16 +13,16 @@ const CustomerIndex = () => {
   const navigate = useNavigate();
 
   const [products, setProducts] = useState<Item[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Item[]>([]);
+  // const [filteredProducts, setFilteredProducts] = useState<Item[]>([]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(products.length / 8);
-  const indexOfLastItem = currentPage * 8;
-  const indexOfFirstItem = indexOfLastItem - 8;
+  // const indexOfLastItem = currentPage * 8;
+  // const indexOfFirstItem = indexOfLastItem - 8;
 
-  const [searchQuery, setSearchQuery] = useState("");
+  // const [searchQuery, setSearchQuery] = useState("");
 
-  const currentProducts = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
+  // const currentProducts = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -37,7 +37,7 @@ const CustomerIndex = () => {
         },
       });
       setProducts(res.data);
-      setFilteredProducts(res.data);
+      // setFilteredProducts(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -50,18 +50,18 @@ const CustomerIndex = () => {
 
   // Search for products by name
   const Search = (query: string) => {
-    setSearchQuery(query);
+    // setSearchQuery(query);
     setCurrentPage(1);
 
     if (!query.trim()) {
       //if search box empty return all items
-      setFilteredProducts(products);
+      // setFilteredProducts(products);
     } else {
       //check for all items if contain word found in search box to return item match with it
-      const results = products.filter((item) =>
-        item.name.toLowerCase().includes(query.toLowerCase())
-      );
-      setFilteredProducts(results);
+      // const results = products.filter((item) =>
+      //   item.name.toLowerCase().includes(query.toLowerCase())
+      // );
+      // setFilteredProducts(results);
     }
   };
 

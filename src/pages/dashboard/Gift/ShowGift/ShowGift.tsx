@@ -1,15 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./ShowCustomer.css";
-// import type { Item } from "../../../types/Item";
-// import BackBtn from "../../../components/BackBtn/BackBtn";
-// import ImageCustom from "../../../../components/ImageCustom/ImageCustom";
-// import { formatDate } from "../../../commons/formatDate";
+import "./ShowGift.css";
 import Loader from "../../../../components/Loader/Loader";
 import ErrorReload from "../../../../components/ErrorReload/ErrorReload";
 
-const ShowCustomer = () => {
+const ShowGift = () => {
   const { id } = useParams();
   // const [showItem, setShowItem] = useState<Item>();
   const [loading, setLoading] = useState(true);
@@ -98,4 +94,4 @@ const ShowCustomer = () => {
   );
 };
 
-export default ShowCustomer;
+export default ShowGift;

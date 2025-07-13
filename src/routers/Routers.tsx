@@ -13,6 +13,11 @@ import AreaIndex from "../pages/dashboard/area/AreaIndex/AreaIndex";
 import AddArea from "../pages/dashboard/area/AddArea/AddArea";
 import EditArea from "../pages/dashboard/area/EditArea/EditArea";
 import ShowArea from "../pages/dashboard/area/ShowArea/ShowArea";
+import Gifts from "../pages/dashboard/Gift/Gifts";
+import GiftIndex from "../pages/dashboard/Gift/GiftIndex/GiftIndex";
+import AddGift from "../pages/dashboard/Gift/AddGift/AddGift";
+import EditGift from "../pages/dashboard/Gift/EditGift/EditGift";
+import ShowGift from "../pages/dashboard/Gift/ShowGift/ShowGift";
 
 
 export const routers = createHashRouter([
@@ -72,6 +77,28 @@ export const routers = createHashRouter([
                     {
                         path: 'show/:id',
                         element: <ShowCustomer />
+                    }
+                ]
+            },
+            {
+                path: 'gift',
+                element: <Gifts />,
+                children: [
+                    {
+                        path: '',
+                        element: <GiftIndex />
+                    },
+                    {
+                        path: 'add',
+                        element: <AddGift />
+                    },
+                    {
+                        path: 'edit/:id',
+                        element: <EditGift />
+                    },
+                    {
+                        path: 'show/:id',
+                        element: <ShowGift />
                     }
                 ]
             }

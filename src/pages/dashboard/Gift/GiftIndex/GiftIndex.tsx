@@ -1,16 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import type { Item } from "../../../types/Item";
 import PaginationCustom from "../../../../components/PaginationCustom/PaginationCustom";
 import SearchInput from "../../../../components/InputSearchCustom/InputSearchCustom";
-// import ItemCard from "../../../components/ItemCard/ItemCard";
 import { Link, useNavigate } from "react-router-dom";
 import BtnCustom from "../../../../components/BtnCustom/BtnCustom";
-import './AreaIndex.css'
+import './GiftIndex.css'
 import type { Item } from "../../../../types/Item";
-import { MdDelete, MdEdit } from "react-icons/md";
+import { Row, Col } from "react-bootstrap";
+import { MdEdit , MdDelete} from "react-icons/md";
 
-const AreaIndex = () => {
+const GiftIndex = () => {
   const navigate = useNavigate();
 
   const [products, setProducts] = useState<Item[]>([]);
@@ -69,38 +68,80 @@ const AreaIndex = () => {
   return (
     <div className="items-page-content d-flex flex-column align-items-center container-lg">
       {/* search box */}
-      <SearchInput
-        placeholder="البحث باسم الاسم"
-        classExtra="pb-5"
-        onSearch={Search}
-      />
 
-      <BtnCustom name={"إضافة منطقة جديدة"} classExtra="p-3 align-self-lg-end align-self-center mb-32" onClick={() => navigate('add')} />
+      <Row className="gx-3 gy-3 pb-2">
+        <Col xs={12} md={6}>
+          <SearchInput
+            placeholder="البحث باسم المستهلك"
+            onSearch={Search}
+          />
+        </Col>
+        <Col xs={12} md={6}>
+          <SearchInput
+            placeholder="البحث بالمحافظة"
+            onSearch={Search}
+          />
+        </Col>
+        <Col xs={12} md={6}>
+          <SearchInput
+            placeholder="البحث بالمنطقة"
+            onSearch={Search}
+          />
+        </Col>
+        <Col xs={12} md={6}>
+          <SearchInput
+            placeholder="البحث حسب الهدية"
+            onSearch={Search}
+          />
+        </Col>
+        <Col xs={12} md={6}>
+          <SearchInput
+            placeholder="البحث حسب تاريخ تسليم الهدية"
+            onSearch={Search}
+          />
+        </Col>
+      </Row>
 
-      <div className="items-container d-flex justify-content-center align-items-center flex-wrap mb-80" style={{ gap: '35px' }}>
-        <table className="table" style={{width: '60vw'}}>
+
+      <BtnCustom 
+        name={"إضافة هدية جديد"} 
+        classExtra="p-3 align-self-lg-end align-self-center mb-32" 
+        onClick={() => navigate('add')} />
+
+      <div className="items-container d-flex justify-content-center align-items-center flex-wrap mb-80" 
+      style={{ gap: '35px' }}>
+        <table className="table" style={{ width: '60vw' }}>
           <thead>
             <tr>
               <th scope="col">#</th>
+              <th scope="col">اسم المستهلك</th>
               <th scope="col">المحافظة</th>
-              <th scope="col">اسم المنطقة</th>
+              <th scope="col">المنطقة</th>
+              <th scope="col">الهدية</th>
+              <th scope="col">تاريخ استلام الهدية</th>
               <th scope="col">العمليات</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">1</th>
+              <td>عبد الرحمن</td>
               <td>دمشق</td>
               <td>شارع بغداد</td>
+              <td>براد</td>
+              <td>5/5/2025</td>
               <td>
-                <Link to={""}><MdEdit /></Link>
-                <Link to={""}><MdDelete /></Link> 
+                <Link to={""} ><MdEdit /></Link>
+                <Link to={""} ><MdDelete /></Link> 
               </td>
             </tr>
             <tr>
-              <th scope="row">2</th>
-              <td>ريف دمشق</td>
-              <td>داريا</td>
+              <th scope="row">1</th>
+              <td>مايا</td>
+              <td>دمشق</td>
+              <td>شارع بغداد</td>
+              <td>ساعة ذكية</td>
+              <td>6/6/2025</td>
               <td>
                 <Link to={""}><MdEdit /></Link>
                 <Link to={""}><MdDelete /></Link> 
@@ -119,4 +160,4 @@ const AreaIndex = () => {
   );
 };
 
-export default AreaIndex;
+export default GiftIndex;

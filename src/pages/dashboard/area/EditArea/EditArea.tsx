@@ -101,7 +101,7 @@ const EditArea = () => {
                     navigate("/home/items");
                 }, 2000);
             })
-            .catch((err) => {
+            .catch(() => {
                 setToast({
                     show: true,
                     type: 'danger',
@@ -135,7 +135,7 @@ const EditArea = () => {
                 title="تعديل منطقة"
                 addItemData={editItemData}
                 onSubmit={sendData}
-                image={image}
+                // image={image}
                 // initialImage={oldData?.image_url}
                 // error={errors}
             />
