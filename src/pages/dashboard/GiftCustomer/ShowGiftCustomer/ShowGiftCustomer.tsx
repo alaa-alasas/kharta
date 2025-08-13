@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./ShowGift.css";
+import "./ShowGiftCustomer.css";
 import Loader from "../../../../components/Loader/Loader";
 import ErrorReload from "../../../../components/ErrorReload/ErrorReload";
 
-const ShowGift = () => {
+const ShowGiftCustomer = () => {
   const { id } = useParams();
   // const [showItem, setShowItem] = useState<Item>();
   const [loading, setLoading] = useState(true);
@@ -94,4 +94,4 @@ const ShowGift = () => {
   );
 };
 
-export default ShowGift;
+export default ShowGiftCustomer;

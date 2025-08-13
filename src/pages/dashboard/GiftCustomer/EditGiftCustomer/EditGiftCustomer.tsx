@@ -9,7 +9,7 @@ import type { ToastData } from "../../../../types/ToastData";
 import Loader from "../../../../components/Loader/Loader";
 import ErrorReload from "../../../../components/ErrorReload/ErrorReload";
 
-const EditGift = () => {
+const EditGiftCustomer = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     // const [errors, setErrors] = useState<ItemError>();
@@ -144,4 +144,4 @@ const EditGift = () => {
     );
 }
 
-export default EditGift
+export default EditGiftCustomer

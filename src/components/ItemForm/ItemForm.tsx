@@ -2,6 +2,8 @@ import { Col, Form, Row } from "react-bootstrap";
 import "./ItemForm.css";
 import InputFiledCustom from "../../components/InputFiledCustom/InputFiledCustom";
 import BtnCustom from "../BtnCustom/BtnCustom";
+import CustomerSearch from "../SearchSelectCustom/SearchSelectCustom";
+import type { Customer } from "../../types/Customer";
 
 export type AddEditType = {
     label: string;
@@ -12,12 +14,14 @@ export type AddEditType = {
     defaultValue?: string;
     errorKey: string,
     options?: { label: string; value: string }[]; 
+    onSelect?: (customer: Customer) => void;
 };
 
 type AddEditProps = {
     addItemData: AddEditType[];
     onSubmit: (e: React.FormEvent) => void;
     title: string;
+    
 };
 
 const ItemForm = ({  addItemData, onSubmit, title }: AddEditProps) => {
@@ -35,20 +39,31 @@ const ItemForm = ({  addItemData, onSubmit, title }: AddEditProps) => {
                                         <Form.Label className="pb-3 fs-6 mb-0">{data.label}</Form.Label>
                                         <Form.Select
                                             ref={data.ref as React.RefObject<HTMLSelectElement>}
-                                            defaultValue={data.defaultValue}
+                                            defaultValue={data.defaultValue} 
                                             className="rounded-1"
                                             aria-label={data.label}
-                                        >
-                                            {/* <option value="">{data.placeholder || "اختر خيارا"}</option> */}
-                                            {data.options?.map((opt, i) => (
-                                                <option key={i} value={opt.value}>
-                                                    {opt.label}
-                                                </option>
-                                            ))}
-                                        </Form.Select>
+                                            onChange={data.onSelect}
+                                            >
+                                            {data.options?.map((opt, i) => {
+                                                return(
+                                                    <option key={i} value={opt.value}>
+                                                        {opt.label}
+                                                    </option>
+                                                )
+                                            })}
+                                            </Form.Select>
                                     </Form.Group>
                                 </Col>
                             );
+                        }else{
+                            if(data.type === "select search"){
+                                return(
+                                    <CustomerSearch onSelect={(customer) => {
+                                                // Call the onSelect function if it exists
+                                                data.onSelect?.(customer!);
+                                            }}  />
+                                )
+                            }
                         }
 
                         // Default case: render normal input field

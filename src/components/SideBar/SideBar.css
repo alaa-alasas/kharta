@@ -4,12 +4,16 @@
     max-width: 270px
 }
 
-.user-info{
+/* .user-info{
     padding-bottom: 6.25%;
+} */
+
+.bg-green00{
+    background-color: var(--green00);
 }
 
 .nav-links {
-    max-height: calc(100vh - 500px);
+    max-height: calc(100vh - 200px);
     overflow-y: auto;
 }
 

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
 
-const Gifts = () => {
+const Hobbies = () => {
 
   return (
     <>
@@ -9,4 +9,4 @@ const Gifts = () => {
   )
 }
 
-export default Gifts
+export default Hobbies

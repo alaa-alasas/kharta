@@ -1,147 +1,184 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { useNavigate, useParams, } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import ItemForm from "../../../../components/ItemForm/ItemForm";
-// import type { Item } from "../../../types/Item";
+import ItemForm, { type AddEditType } from "../../../../components/ItemForm/ItemForm";
 import AppToast from "../../../../components/ToastCustom/ToastCustom";
-// import type { ItemError } from "../../../types/ItemError";
-import type { ToastData } from "../../../../types/ToastData";
 import Loader from "../../../../components/Loader/Loader";
 import ErrorReload from "../../../../components/ErrorReload/ErrorReload";
+import type { ToastData } from "../../../../types/ToastData";
+import type { Area } from "../../../../types/area";
+
+type Province = {
+  id: number;
+  name: string;
+};
 
 const EditArea = () => {
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    // const [errors, setErrors] = useState<ItemError>();
-    const [toast, setToast] = useState<ToastData>({
-        show: false,
-        type: 'success',
-        message: '',
-    });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [toast, setToast] = useState<ToastData>({
+    show: false,
+    type: 'success',
+    message: '',
+  });
 
-    const { id } = useParams();
-    const name = useRef<HTMLInputElement>(null!);
-    const price = useRef<HTMLInputElement>(null!);
-    const image = useRef<HTMLInputElement>(null!);
-    const navigate = useNavigate()
-    // const [oldData, setOldData] = useState<Item>();
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
-    const editItemData = [
-        {
-            label: "Name",
-            placeholder: "Enter the product name",
-            type: "text",
-            controlId: "productName",
-            ref: name,
-            // defaultValue: oldData?.name,
-            errorKey: "name"
-        },
-        {
-            label: "Price",
-            placeholder: "Enter the product price",
-            type: "number",
-            controlId: "productPrice",
-            ref: price,
-            // defaultValue: oldData?.price,
-            errorKey: "price"
-        },
-    ];
-    useEffect(() => {
-        getItem();
-      }, []);
-    
-      var getItem = () => {
-        axios.get(`https://web-production-3ca4c.up.railway.app/api/items/${id}`, {
-            headers: {
-                Accept: "application/json",
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-        })
-            .then((res) => {
-                console.log("Fetched item:", res.data);
-                // setOldData(res.data);
-                setLoading(false);
+  // Form refs
+  const provinceRef = useRef<HTMLSelectElement>(null!);
+  const areaNameRef = useRef<HTMLInputElement>(null!);
 
-            })
-            .catch((err) => {
-                console.error("Error fetching item:", err);
-                setError("Failed to load item. Please try again later.");
-                setLoading(false);
-            });
+  // Data
+  const [provinces, setProvinces] = useState<Province[]>([]);
+  const [currentArea, setCurrentArea] = useState<Area>({id: 0 , name: "", provinceId: 0, province_name: ""});
+
+  // Fetch provinces and area data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch provinces
+        const provincesRes = await axios.get("http://localhost:3000/api/provinces");
+        setProvinces(provincesRes.data || []);
+
+        // Fetch current area
+        const areaRes = await axios.get(`http://localhost:3000/api/areas/${id}`);
+        const areaData = areaRes.data.data;
+        setCurrentArea(areaData);
+
+
+        // Fill form fields after data loads
+        if (areaNameRef.current) areaNameRef.current.value = areaData.name;
+        if (provinceRef.current) provinceRef.current.value = areaData.provinceId;
+      } catch (err: any) {
+        console.error("Error fetching data:", err);
+        setError("فشل في تحميل البيانات. تحقق من الاتصال.");
+      } finally {
+        setLoading(false);
       }
-
-
-    const sendData = (event: FormEvent) => {
-        event.preventDefault();
-
-        axios.post(
-                `https://web-production-3ca4c.up.railway.app/api/items/${id}`,
-                {
-                    name: name?.current?.value,
-                    price: price?.current?.value,
-                    image: image?.current?.files?.[0],
-                    _method: "PUT",
-                },
-                {
-                    headers: {
-                        Accept: "application/json",
-                        Authorization: `Bearer ${localStorage.getItem("token")}`,
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-            )
-            .then(() => {
-                setToast({
-                    show: true,
-                    type: 'success',
-                    message: 'Edit Item successful!'
-                  });
-                setTimeout(() => {
-                    setToast(prev => ({ ...prev, show: false }));
-                    navigate("/home/items");
-                }, 2000);
-            })
-            .catch(() => {
-                setToast({
-                    show: true,
-                    type: 'danger',
-                    message: 'Error Edit item, please try again'
-                  });
-                // setErrors(err.response.data.errors);
-            });
     };
 
-    
-  if (loading) {
-    return (
-      <Loader />
-    );
-  }
+    fetchData();
+  }, [id]);
 
-  if (error) {
-    return (
-        <ErrorReload error={error} classExtra="itemShowWapper" onClick={() => {
-            getItem();
-            setLoading(true);
-            setError(null);
-        }}  />
-      
-    );
-  }
+  const sendData = async (event: FormEvent) => {
+    event.preventDefault();
 
-    return (
-        <div>
-            <ItemForm
-                title="تعديل منطقة"
-                addItemData={editItemData}
-                onSubmit={sendData}
-                // image={image}
-                // initialImage={oldData?.image_url}
-                // error={errors}
-            />
-            {toast.type && <AppToast data={toast} />}
-        </div>
-    );
-}
+    const name = areaNameRef.current?.value?.trim();
+    const provinceId = Number(provinceRef.current?.value);
 
-export default EditArea
+    // Validation
+    if (!name) {
+      return setToast({
+        show: true,
+        type: 'danger',
+        message: 'اسم المنطقة مطلوب',
+      });
+    }
+    if (isNaN(provinceId) || provinceId <= 0) {
+      return setToast({
+        show: true,
+        type: 'danger',
+        message: 'يجب اختيار محافظة صالحة',
+      });
+    }
+
+    try {
+      await axios.put(
+        `http://localhost:3000/api/areas/${id}`,
+        { name, provinceId },
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+
+      setToast({
+        show: true,
+        type: 'success',
+        message: 'تم تحديث المنطقة بنجاح!',
+      });
+
+      setTimeout(() => {
+        setToast(prev => ({ ...prev, show: false }));
+        navigate("/admin/area");
+      }, 2000);
+    } catch (err: any) {
+      let message = 'فشل في التحديث. تحقق من البيانات وأعد المحاولة.';
+
+      if (err.response?.data?.error) {
+        message = err.response.data.error;
+      } else if (err.response?.status === 404) {
+        message = 'المنطقة غير موجودة.';
+      } else if (err.response?.status === 400) {
+        message = err.response.data.error || message;
+      } else if (err.response?.status === 401) {
+        message = 'انتهت صلاحية الجلسة. قم بتسجيل الدخول مجددًا.';
+      } else if (!err.response) {
+        message = 'لا يوجد اتصال مع السيرفر.';
+      }
+
+      setToast({
+        show: true,
+        type: 'danger',
+        message,
+      });
+    }
+  };
+
+  // Dynamic form data
+  const editItemData : AddEditType[] = [
+    {
+      label: "المحافظة",
+      placeholder: "اختر المحافظة",
+      type: "select" as const,
+      controlId: "province",
+      ref: provinceRef,
+      errorKey: "province",
+      defaultValue: String(currentArea?.provinceId) ,
+      options: loading
+        ? [{ value: "", label: "جاري التحميل..." }]
+        : provinces.length === 0
+        ? [{ value: "", label: "لا توجد محافظات" }]
+        : provinces.map(p => ({
+            value: String(p.id),
+            label: p.name,
+          })),
+    },
+    {
+      label: "اسم المنطقة",
+      placeholder: "أدخل اسم المنطقة",
+      type: "text" as const,
+      controlId: "areaName",
+      ref: areaNameRef,
+      defaultValue: currentArea?.name,
+      errorKey: "name",
+    },
+  ];
+
+  if (loading) return <Loader />;
+  if (error)
+    return (
+      <ErrorReload
+        error={error}
+        classExtra="itemShowWapper"
+        onClick={() => {
+          window.location.reload();
+        }}
+      />
+    );
+
+  return (
+    <div className="edit-area-page">
+      <ItemForm
+        title="تعديل منطقة"
+        addItemData={editItemData}
+        onSubmit={sendData}
+      />
+      {toast.show && <AppToast data={toast} />}
+    </div>
+  );
+};
+
+export default EditArea;

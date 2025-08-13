@@ -1,0 +1,31 @@
+
+.box-info li {
+    flex-basis: calc(33.3% - 20px);
+}
+
+.box-info li .bx {
+    padding: 30px;
+}
+
+.box-info li:nth-child(1) .bx {
+    background: var(--light-blue);
+    color: var(--blue);
+}
+
+.box-info li:nth-child(2) .bx {
+    background: var(--light-yellow);
+    color: var(--yellow);
+}
+
+.box-info li:nth-child(3) .bx {
+    background: var(--light-orange);
+    color: var(--orange);
+}
+
+.box-info li .text h3 {
+    color: var(--black-color33);
+}
+
+.box-info li .text p {
+    color: var(--black-color33);
+}

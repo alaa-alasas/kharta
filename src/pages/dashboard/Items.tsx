@@ -1,21 +1,20 @@
-// import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { FiAlignLeft } from "react-icons/fi";
 import Sidebar from "../../components/SideBar/SideBar";
+import ReportInfo from "../../sections/ReportInfo/ReportInfo";
 
 const Items = () => {
-  // const location = useLocation();
-  // const navigate = useNavigate();
-
-  // const hideElement =
-  //   location.pathname === "/home" || location.pathname === "/home/";
-
+  const location = useLocation();
+  const navigate = useNavigate();
+  const hideElement =
+    location.pathname === "/admin" || location.pathname === "/admin/";
   const [showSidebar, setShowSidebar] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // if (!localStorage.getItem("token")) navigate("/");
+    if (!localStorage.getItem("token")) navigate("/auth");
 
     const handleResize = () => {
       const mobile = window.innerWidth < 992;
@@ -48,7 +47,12 @@ const Items = () => {
               <FiAlignLeft className="text-white" />
             </button>
           )}
-
+          {/* elements for show in home page */}
+          {hideElement && (
+            <div className="container-lg pt-lg-4 p-3">
+              <ReportInfo />
+            </div>
+          )}
           <Outlet />
         </div>
       </div>

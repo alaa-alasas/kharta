@@ -26,6 +26,7 @@ const InputFiledCustom = forwardRef<HTMLInputElement, InputFiledCustomProps>(
           placeholder={placeholder}
           ref={ref}
           defaultValue={defaultValue}
+          required
         />
         {children}
         </Form.Group>

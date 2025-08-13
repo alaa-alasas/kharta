@@ -8,6 +8,7 @@ import AppToast from "../ToastCustom/ToastCustom";
 import ModalCustom from "../ModalCustom/ModalCustom";
 import {useState} from 'react';
 import type { ToastData } from "../../types/ToastData";
+import axios from "axios";
 
 interface SidebarProps {
   show: boolean;
@@ -25,9 +26,22 @@ const Sidebar: React.FC<SidebarProps> = ({ show,onClose }) => {
   const handleShow = () => setShowModal(true);
   const handleHide = () => setShowModal(false);
 
-  const logout = async () => {
-    setToast(prev => ({ ...prev, show: false }));
-    navigate("/auth");
+   const logout = async () => {
+
+      setShowModal(false);
+      localStorage.removeItem('token');
+      localStorage.removeItem("userName");
+
+      setToast({
+        show: true,
+        type: 'success',
+        message: 'تم تسجيل الخروج بنجاح'
+      });
+
+      setTimeout(() => {
+          setToast(prev => ({ ...prev, show: false }));
+          navigate("/auth");
+      }, 1500);
   };
 
   return (
@@ -40,7 +54,7 @@ const Sidebar: React.FC<SidebarProps> = ({ show,onClose }) => {
         </button>
       )}
       
-      {/* compang logo */}
+      {/* company logo */}
       <Link to={"/admin"}>
         <Image
           src="/kharta/Images/logo.png"
@@ -52,14 +66,6 @@ const Sidebar: React.FC<SidebarProps> = ({ show,onClose }) => {
       
       {/* Profile Section */}
       <div className="user-info  text-center">
-        <ImageCustom
-          src="/kharta/Images/Sidebar/Sample_User_Icon.png"
-          fallbackSrc="/kharta/Images/Sidebar/Sample_User_Icon.png"
-          alt="user Image"
-          className="rounded-circle bg-white"
-          width={'128'}
-          height={'128'}
-        />
         <h5 className="fw-bold">{localStorage.getItem("userName")}</h5>
       </div>
 
@@ -72,7 +78,7 @@ const Sidebar: React.FC<SidebarProps> = ({ show,onClose }) => {
           <NavLink
             key={index}
             to={item.path}
-            className={({ isActive }) => `fs-14 text-decoration-none text-dark rounded py-2 px-4 d-flex gap-2 mx-auto ${ isActive ? "bg-orange" : ""}`}>
+            className={({ isActive }) => `fs-14 text-decoration-none text-dark rounded py-2 px-4 d-flex gap-2 mx-auto ${ isActive ? "bg-green00 text-white" : ""}`}>
             <span className="sidebar-link fw-medium position-relative">{item.name}</span>
           </NavLink>
         ))}

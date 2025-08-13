@@ -1,10 +1,13 @@
 export interface AuthError {
-    first_name: Array<string>;
-    last_name: Array<string>;
-    email: Array<string>;
-    password: Array<string>;
-    password_confirmation: Array<string>;
-    profile_image: Array<string>;
-    msg: string
+    fullName?: Array<string>;
+    birthdate?: Array<string>;
+    gender?: Array<string>;
+    phonenumber?: Array<string>;
+    provinceId?: Array<string>;
+    areaId?: Array<string>;
+    educationId?: Array<string>;
+    workId?: Array<string>;
+    hobbyId?: Array<string>;
+    msg?: string
   }
   
